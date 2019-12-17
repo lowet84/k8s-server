@@ -1,0 +1,29 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: traefik-ingress-service-external
+spec:
+  selector:
+    name: traefik-ingress-lb
+  ports:
+    - protocol: TCP
+      port: 80
+      name: http
+      nodePort: 31080
+    - protocol: TCP
+      port: 443
+      name: https
+      nodePort: 31443
+  type: NodePort
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: traefik-ingress-service-internal
+spec:
+  selector:
+    name: traefik-ingress-lb
+  ports:
+    - protocol: TCP
+      port: 8080
+      name: webui

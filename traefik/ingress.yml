@@ -1,0 +1,18 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-web-ui
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`traefik.fredriklowenhamn.se`)
+      kind: Rule
+      services:
+        - name: traefik-ingress-service-internal
+          port: 8080
+#      middlewares:
+#        - name: redirect-traefik
+#        - name: auth
+  tls:
+    certResolver: default

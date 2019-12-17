@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: kubernetes
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: HostSNI(`kube.fredriklowenhamn.se`)
+      kind: Rule
+      services:
+        - name: kubernetes
+          port: 443
+  tls:
+    passthrough: true
+#   certResolver: default

@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: traefik-share
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/mnt/filer/Settings/traefik"
+#  mountOptions:
+#    - dir_mode=0600
+#    - file_mode=0600
+#    - uid=10000
+#    - gid=10000
+#    - mfsymlinks
+#    - nobrl
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: traefik-share
+spec:
+  accessModes:
+    - ReadWriteMany
+  mountOptions:
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: ""
+  volumeName: traefik-share

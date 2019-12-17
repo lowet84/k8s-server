@@ -1,0 +1,33 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: httpsredirect
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: redirect-ingress
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: hostregexp(`{host:.+}`)
+      kind: Rule
+      services:
+        - name: traefik-ingress-service-internal
+          port: 8080
+      middlewares:
+        - name: httpsredirect
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: auth
+spec:
+  forwardAuth:
+    address: http://simple-auth:3000/check
+    trustForwardHeader: true
