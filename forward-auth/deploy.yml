@@ -1,0 +1,26 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: forward-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: forward-auth
+  template:
+    metadata:
+      labels:
+        name: forward-auth
+    spec:
+      containers:
+        - image: lowet84/traefik-forward-auth
+          name: forward-auth
+          env:
+            - name: CLIENT_ID
+              value: traefik
+            - name: CLIENT_SECRET
+              value: 58b8ab60-2ea5-4e88-9fe7-7ddd6f9229ad
+            - name: PROVIDER_URI
+              value: https://auth.fredriklowenhamn.se/auth/realms/master
+            - name: SECRET
+              value: supersecretstring

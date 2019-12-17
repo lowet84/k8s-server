@@ -29,5 +29,7 @@ metadata:
   name: auth
 spec:
   forwardAuth:
-    address: http://simple-auth:3000/check
+    address: "http://forward-auth:4181/"
+    authResponseHeaders: 
+      - X-Forwarded-User
     trustForwardHeader: true

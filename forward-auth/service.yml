@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: forward-auth
+spec:
+  selector:
+    name: forward-auth
+  ports:
+    - protocol: TCP
+      port: 4181
+      name: webui
