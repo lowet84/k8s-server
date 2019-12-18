@@ -19,7 +19,7 @@ spec:
             - name: CLIENT_ID
               value: traefik
             - name: CLIENT_SECRET
-              value: 58b8ab60-2ea5-4e88-9fe7-7ddd6f9229ad
+              value: 9ac09cc7-cf3e-4969-a8c4-aadbda2dffc3
             - name: PROVIDER_URI
               value: https://auth.fredriklowenhamn.se/auth/realms/master
             - name: SECRET

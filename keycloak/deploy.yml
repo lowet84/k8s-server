@@ -16,9 +16,16 @@ spec:
         - image: jboss/keycloak
           name: keycloak
           env:
-            - name: KEYCLOAK_USER
-              value: fredrik
-            - name: KEYCLOAK_PASSWORD
-              value: gurkburk
+            # - name: KEYCLOAK_USER
+            #   value: fredrik
+            # - name: KEYCLOAK_PASSWORD
+            #   value: gurkburk
             - name: PROXY_ADDRESS_FORWARDING
               value: "true"
+          volumeMounts:
+            - name: keycloak-share
+              mountPath: /opt/jboss/keycloak/standalone/data/
+      volumes:
+        - name: keycloak-share
+          persistentVolumeClaim:
+            claimName: keycloak-share
