@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nexus
+spec:
+  selector:
+    name: nexus
+  ports:
+    - protocol: TCP
+      port: 8081
+      name: webui
+    - protocol: TCP
+      port: 9000
+      name: docker

@@ -1,0 +1,31 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nexus
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`nexus.fredriklowenhamn.se`)
+      kind: Rule
+      services:
+        - name: nexus
+          port: 8081
+  tls:
+    certResolver: default
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: docker
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`docker.fredriklowenhamn.se`)
+      kind: Rule
+      services:
+        - name: nexus
+          port: 9000
+  tls:
+    certResolver: default
