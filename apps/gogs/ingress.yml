@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: gogs
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`gogs.fredriklowenhamn.se`)
+      kind: Rule
+      services:
+        - name: gogs
+          port: 3000
+  tls:
+    certResolver: default

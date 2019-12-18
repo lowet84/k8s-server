@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: gogs
+spec:
+  selector:
+    name: gogs
+  ports:
+    - protocol: TCP
+      port: 3000
+      name: webui
